@@ -1,15 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Header from '../../component/common/Header';
 import StyleCard from '../../component/common/StyleCard';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 // Assuming you have a RootStackParamList defined in your navigation setup
 type RootStackParamList = {
@@ -24,7 +18,7 @@ const MyScreen: React.FC<MyScreenProps> = ({navigation, route}) => {
   const datas = ['1', '1', '1', '1', '1', '1'];
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* <Header title="Yo" /> */}
       <FlatList
         data={datas}
@@ -35,14 +29,15 @@ const MyScreen: React.FC<MyScreenProps> = ({navigation, route}) => {
         }}
         renderItem={({_, index}) => <StyleCard index={index} />}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    // paddingBottom: 30,
   },
 });
 

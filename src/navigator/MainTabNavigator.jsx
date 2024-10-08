@@ -28,7 +28,7 @@ function HomeTabNavigator() {
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: 'white',
+          height: 50,
           borderTopRightRadius: 12,
           borderTopLeftRadius: 12,
           shadowRadius: 12,
@@ -37,21 +37,21 @@ function HomeTabNavigator() {
           shadowColor: 'rgba(47,64,85,1)',
         },
         tabBarBackground: () => (
-          <View>
-            <BlurView
-              blurAmount={55}
-              blurType="regular"
-              style={[
-                StyleSheet.absoluteFillObject,
-                {
-                  borderTopRightRadius: 12,
-                  borderTopLeftRadius: 12,
-                  backgroundColor: 'transparent',
-                  overflow: 'hidden',
-                },
-              ]}
-            />
-          </View>
+          // <View>
+          <BlurView
+            blurAmount={55}
+            blurType="regular"
+            style={[
+              StyleSheet.absoluteFillObject,
+              {
+                borderTopRightRadius: 12,
+                borderTopLeftRadius: 12,
+                backgroundColor: 'transparent',
+                overflow: 'hidden',
+              },
+            ]}
+          />
+          // </View>
         ),
         tabBarHideOnKeyboard: true,
         headerShown: false,
