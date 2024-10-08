@@ -12,8 +12,8 @@ function AppMainNavigator() {
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="FistTime">
-        <Stack.Screen name="FistTime" component={WelcomeNavigator} />
-        {/* <Stack.Screen name="MainFlow" component={MainTabNavigator} /> */}
+        {/* <Stack.Screen name="FistTime" component={WelcomeNavigator} /> */}
+        <Stack.Screen name="MainFlow" component={MainTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
