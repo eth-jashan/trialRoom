@@ -4,6 +4,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Header from '../../component/common/Header';
 import StyleCard from '../../component/common/StyleCard';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ProfileSetupBanner from '../../component/HomeScreenComponent/ProfileSetupBanner';
+import OOTDCarousel from '../../component/HomeScreenComponent/OOTDCarousel';
 
 // Assuming you have a RootStackParamList defined in your navigation setup
 type RootStackParamList = {
@@ -19,7 +21,8 @@ const MyScreen: React.FC<MyScreenProps> = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Header title="Yo" /> */}
+      {/* <ProfileSetupBanner /> */}
+      {/* <OOTDCarousel /> */}
       <FlatList
         data={datas}
         numColumns={2}
@@ -27,6 +30,12 @@ const MyScreen: React.FC<MyScreenProps> = ({navigation, route}) => {
           width: '100%',
           alignItems: 'center',
         }}
+        ListHeaderComponent={() => (
+          <View>
+            <ProfileSetupBanner />
+            <OOTDCarousel />
+          </View>
+        )}
         renderItem={({_, index}) => <StyleCard index={index} />}
       />
     </SafeAreaView>
