@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 // import BookmarkScreen from '../screens/BookMarkScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -68,8 +68,8 @@ function HomeTabNavigator() {
             }}></View>
         ),
       })}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Bookmark" component={HomeScreen} />
+      <Tab.Screen name="Home" component={ProfileScreen} />
+      <Tab.Screen name="Bookmark" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
