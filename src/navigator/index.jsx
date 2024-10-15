@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import WelcomeNavigator from './WelcomeNavigator';
 import {NavigationContainer} from '@react-navigation/native';
 import MainTabNavigator from './MainTabNavigator';
+import ProfileSetup from '../screens/ProfileSetup';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +13,7 @@ function AppMainNavigator() {
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="FistTime">
-        {/* <Stack.Screen name="FistTime" component={WelcomeNavigator} /> */}
+        <Stack.Screen name="FistTime" component={ProfileSetup} />
         <Stack.Screen name="MainFlow" component={MainTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

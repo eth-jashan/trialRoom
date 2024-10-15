@@ -76,8 +76,8 @@ function HomeTabNavigator() {
 function MainTabNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="MainTab" component={HomeTabNavigator} />
-      {/* <Stack.Screen name="NFTDetail" component={NFTDetailScreen} /> */}
+      {/* <Stack.Screen name="MainTab" component={HomeTabNavigator} /> */}
+      <Stack.Screen name="MainTab" component={ProfileScreen} />
     </Stack.Navigator>
   );
 }

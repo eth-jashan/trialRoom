@@ -6,6 +6,8 @@ import {
   ScrollView,
   FlatList,
   Image,
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Header from '../../component/common/Header';
@@ -27,47 +29,57 @@ type MyScreenProps = NativeStackScreenProps<RootStackParamList, 'MyScreen'>;
 const MyScreen: React.FC<MyScreenProps> = ({navigation, route}) => {
   const [data, setData] = useState<string>('');
   const datas = ['1', '1', '1', '1', '1', '1'];
-
+  const {height, width} = Dimensions.get('window');
+  const generatedImage =
+    'https://media.discordapp.net/attachments/1064647966708731974/1295409659909505154/jashan_shetty_manequiene_in_fashion_designer_clothes_in_crazy_s_1aad8ebe-7e70-4893-8868-c7a9850263e9.png?ex=670e8bc2&is=670d3a42&hm=c2abbc7eb0eeb8a08c3cf30de1ab17927eafa0466c5a3f73a8a5e06c240c0c6a&=&format=webp&quality=lossless&width=700&height=700';
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Image
-          src={
-            'https://images.squarespace-cdn.com/content/v1/50aa7079e4b040d142112688/1521037439197-MNF07W0FOSJ2ENGHO53O/JakeHicksPhotography+%283+of+5%29.jpg'
-          }
-          // resizeMode="contain"
+          src={generatedImage}
           style={[
             StyleSheet.absoluteFillObject,
-            {width: '100%', height: '50%'},
+            {width: width, height: height},
           ]}
         />
-        <View style={{marginTop: '70%'}}>
-          <ProfileInfoCard
-            image={
-              'https://images.squarespace-cdn.com/content/v1/50aa7079e4b040d142112688/1521037439197-MNF07W0FOSJ2ENGHO53O/JakeHicksPhotography+%283+of+5%29.jpg'
-            }
-          />
+        <View style={{marginTop: height * 0.5}}>
+          <ProfileInfoCard image={generatedImage} />
         </View>
-        <OOTDCarousel
-          image={
-            'https://images.squarespace-cdn.com/content/v1/50aa7079e4b040d142112688/1521037439197-MNF07W0FOSJ2ENGHO53O/JakeHicksPhotography+%283+of+5%29.jpg'
-          }
-        />
+        <TouchableOpacity
+          style={{
+            width: '90%',
+            padding: 12,
+            backgroundColor: '#fff',
+            alignItems: 'center',
+            alignSelf: 'center',
+            marginTop: 12,
+            borderRadius: 50,
+            shadowColor: '#000',
+            shadowOpacity: 0.2,
+            shadowRadius: 12,
+          }}>
+          <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
+            Try Virtual-Try-On 👔🧥👚
+          </Text>
+        </TouchableOpacity>
         {/* <FlatList
-        data={datas}
-        numColumns={2}
-        contentContainerStyle={{
-          width: '100%',
-          alignItems: 'center',
-        }}
-        ListHeaderComponent={() => (
-          <View>
-            <ProfileSetupBanner />
-            <OOTDCarousel />
-          </View>
-        )}
-        renderItem={({_, index}) => <StyleCard index={index} />}
-      /> */}
+          data={datas}
+          numColumns={2}
+          contentContainerStyle={{
+            width: '100%',
+            alignItems: 'center',
+          }}
+          // ListHeaderComponent={() => (
+          //   <View style={{marginTop: '70%'}}>
+          //     <ProfileInfoCard
+          //       image={
+          //         'https://images.squarespace-cdn.com/content/v1/50aa7079e4b040d142112688/1521037439197-MNF07W0FOSJ2ENGHO53O/JakeHicksPhotography+%283+of+5%29.jpg'
+          //       }
+          //     />
+          //   </View>
+          // )}
+          renderItem={({_, index}) => <StyleCard index={index} />}
+        /> */}
       </ScrollView>
     </SafeAreaView>
   );

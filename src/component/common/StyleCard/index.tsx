@@ -12,7 +12,7 @@ const StyleCard: React.FC<StyleCardProps> = ({index}) => {
       <View style={styles.innerContainer}>
         <Image
           src={
-            'https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/25507498/2024/1/29/43d7a4fc-5009-4db3-b0a8-1e2474f2e5f61706513413837-Marks--Spencer-Women-Dresses-4501706513413560-1.jpg'
+            'https://images.squarespace-cdn.com/content/v1/50aa7079e4b040d142112688/1521037439197-MNF07W0FOSJ2ENGHO53O/JakeHicksPhotography+%283+of+5%29.jpg'
           }
           style={StyleSheet.absoluteFillObject}
         />

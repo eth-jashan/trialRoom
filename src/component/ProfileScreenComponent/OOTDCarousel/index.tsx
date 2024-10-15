@@ -81,9 +81,10 @@ const OOTDCarousel = ({image}: {image: string}) => {
     <ImageBackground
       style={{
         width: '100%',
-        backgroundColor: 'gray',
         alignSelf: 'center',
         marginBottom: 30,
+        alignItems: 'center',
+        flexDirection: 'row',
       }}
       src={image}>
       <BlurView
@@ -113,6 +114,7 @@ const OOTDCarousel = ({image}: {image: string}) => {
             contentContainerStyle={{
               height: IMAGE_HEIGHT + SPACING * 2,
               paddingHorizontal: SPACING * 2,
+              alignItems: 'center',
             }}
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index}) => {
