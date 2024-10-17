@@ -13,7 +13,7 @@ function AppMainNavigator() {
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="FistTime">
-        <Stack.Screen name="FistTime" component={ProfileSetup} />
+        {/* <Stack.Screen name="FistTime" component={ProfileSetup} /> */}
         <Stack.Screen name="MainFlow" component={MainTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

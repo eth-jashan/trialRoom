@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
@@ -14,21 +15,163 @@ type ProfileSetupProps = {};
 
 const ProfileSetup: React.FC<ProfileSetupProps> = ({navigation, route}) => {
   const [data, setData] = useState<string>('');
-  const datas = ['1', '1', '1', '1', '1', '1'];
+
+  const stylePreferences = [
+    'Casual Chic 👚 \n*Relaxed yet stylish everyday wear*',
+    'Bohemian 🌻 \n*Free-spirited and artistic*',
+    'Minimalist ⚪ \n*Clean lines and simple elegance*',
+    'Vintage 🕰️ \n*Inspired by past decades*',
+    'Glamorous ✨ \n*Luxurious and eye-catching*',
+    'Sporty 🏃‍♀️ \n*Athletic and comfortable*',
+    'Preppy 🏫 \n*Classic and polished*',
+    'Edgy 🖤 \n*Bold and unconventional*',
+    // 'Romantic 🌹 \n*Soft, feminine, and dreamy*',
+    'Business Professional 💼 \n*Sleek and office-appropriate*',
+  ];
+
   const {height, width} = Dimensions.get('window');
+
   const generatedImage =
-    'https://media.discordapp.net/attachments/1064647966708731974/1295409659909505154/jashan_shetty_manequiene_in_fashion_designer_clothes_in_crazy_s_1aad8ebe-7e70-4893-8868-c7a9850263e9.png?ex=670e8bc2&is=670d3a42&hm=c2abbc7eb0eeb8a08c3cf30de1ab17927eafa0466c5a3f73a8a5e06c240c0c6a&=&format=webp&quality=lossless&width=700&height=700';
+    'https://cdn.midjourney.com/1aad8ebe-7e70-4893-8868-c7a9850263e9/0_0.jpeg';
+
   const renderImageUpload = () => (
-    <Text
-      style={{
-        fontSize: 18,
-        color: 'white',
-        alignItems: 'center',
-        fontWeight: '700',
-        textAlign: 'center',
-      }}>
-      Upload your best snapshot so our AI can genrate try-on to
-    </Text>
+    <View>
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'white',
+          alignItems: 'center',
+          fontWeight: '700',
+          textAlign: 'center',
+        }}>
+        {`Upload your best snapshot so our\n AI can genrate try-on to`}
+      </Text>
+      <Image
+        source={{
+          uri: 'https://cdn.midjourney.com/1aad8ebe-7e70-4893-8868-c7a9850263e9/0_0.jpeg',
+        }}
+        style={{
+          width: width * 0.8,
+          height: height / 2,
+          resizeMode: 'cover',
+          borderWidth: 3,
+          borderColor: 'white',
+          marginVertical: 20,
+        }}
+      />
+      <Text
+        style={{
+          fontSize: 12,
+          color: 'black',
+          alignItems: 'center',
+          fontWeight: 'light',
+          textAlign: 'center',
+        }}>
+        {`We are the best and fastest try-it-on out there`}
+      </Text>
+      <TouchableOpacity
+        style={{
+          width: width * 0.8,
+          padding: 12,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginTop: 12,
+          borderRadius: 12,
+          shadowColor: '#000',
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+        }}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: 'black'}}>
+          Upload a Snap 📸
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+  const renderStylePicker = () => (
+    <View style={{flex: 1, alignItems: 'center'}}>
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'white',
+          alignItems: 'center',
+          fontWeight: '700',
+          textAlign: 'center',
+          marginTop: 12,
+        }}>
+        {`Style Signature`}
+      </Text>
+      <Text
+        style={{
+          fontSize: 14,
+          color: '#E1E1E1',
+          alignItems: 'center',
+          fontWeight: 'light',
+          textAlign: 'center',
+          marginBottom: 20,
+          width: width * 0.7,
+        }}>
+        {`Pick your favorite styles to personalize your virtual try-on experience.`}
+      </Text>
+      <FlatList
+        data={stylePreferences}
+        renderItem={({item}) => (
+          <View
+            style={{
+              width: width * 0.7,
+              padding: 8,
+              borderRadius: 8,
+              marginBottom: 10,
+              overflow: 'hidden',
+              // backgroundColor: 'white',
+            }}>
+            <BlurView
+              blurAmount={50}
+              blurType="regular"
+              style={StyleSheet.absoluteFillObject}
+            />
+            <Text
+              style={{
+                fontSize: 14,
+                color: 'black',
+                alignItems: 'center',
+                fontWeight: '500',
+                textAlign: 'center',
+              }}>
+              {item?.split('\n')[0]}
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: 'black',
+                alignItems: 'center',
+                fontWeight: '300',
+                fontStyle: 'italic',
+                textAlign: 'center',
+              }}>
+              {item?.split('\n')[1]}
+            </Text>
+          </View>
+        )}
+      />
+      <TouchableOpacity
+        style={{
+          width: width * 0.8,
+          padding: 12,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginBottom: 12,
+          borderRadius: 12,
+          shadowColor: '#000',
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+        }}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: 'black'}}>
+          Continue
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
   return (
     <SafeAreaView style={styles.container}>
@@ -41,24 +184,8 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({navigation, route}) => {
         blurType="regular"
         style={StyleSheet.absoluteFillObject}
       />
-      {renderImageUpload()}
-      <TouchableOpacity
-        style={{
-          width: '90%',
-          padding: 12,
-          backgroundColor: '#fff',
-          alignItems: 'center',
-          alignSelf: 'center',
-          marginTop: 12,
-          borderRadius: 50,
-          shadowColor: '#000',
-          shadowOpacity: 0.2,
-          shadowRadius: 12,
-        }}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
-          Try Virtual-Try-On 👔🧥👚
-        </Text>
-      </TouchableOpacity>
+      {/* {renderImageUpload()} */}
+      {renderStylePicker()}
     </SafeAreaView>
   );
 };
@@ -67,6 +194,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
     // paddingBottom: 30,
   },
 });

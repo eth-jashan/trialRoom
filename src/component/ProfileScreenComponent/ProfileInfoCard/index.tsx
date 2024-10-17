@@ -12,9 +12,13 @@ import Icon from 'react-native-vector-icons/Entypo';
 interface ProfileSetupBannerProps {
   // title: string;
   image: string;
+  onListModalOpen: () => void;
 }
 
-const ProfileInfoCard: React.FC<ProfileSetupBannerProps> = ({image}) => {
+const ProfileInfoCard: React.FC<ProfileSetupBannerProps> = ({
+  image,
+  onListModalOpen,
+}) => {
   return (
     <ImageBackground style={styles.bannerContainer} src={image}>
       <BlurView
@@ -134,6 +138,7 @@ const ProfileInfoCard: React.FC<ProfileSetupBannerProps> = ({image}) => {
         </View> */}
       </View>
       <TouchableOpacity
+        onPress={onListModalOpen}
         style={{
           width: '90%',
           padding: 8,
