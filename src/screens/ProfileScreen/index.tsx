@@ -4,19 +4,19 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  FlatList,
   Image,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import Header from '../../component/common/Header';
-import StyleCard from '../../component/common/StyleCard';
+
 import {SafeAreaView} from 'react-native-safe-area-context';
 // import ProfileSetupBanner from '../../component/ProfileScreenComponent/ProfileInfoCard';
-import OOTDCarousel from '../../component/ProfileScreenComponent/OOTDCarousel';
+
 import ProfileInfoCard from '../../component/ProfileScreenComponent/ProfileInfoCard';
 import {Modalize} from 'react-native-modalize';
+
+import VirtualGeneratedList from '../../component/ProfileScreenComponent/VirtualGenratedList';
 // import ProfileSetupBanner from '../../component/ProfileScreenComponent/ProfileInfoCard';
 
 // Assuming you have a RootStackParamList defined in your navigation setup
@@ -79,40 +79,7 @@ const MyScreen: React.FC<MyScreenProps> = ({navigation, route}) => {
           <View style={{flex: 1, backgroundColor: 'white'}}></View>
         </Modalize>
         <Modalize modalHeight={height * 0.7} ref={generatedListModalizeRef}>
-          <View style={{flex: 1, backgroundColor: 'white'}}>
-            <Text
-              style={{
-                fontSize: 24,
-                color: 'black',
-                fontWeight: 'bold',
-                marginTop: 20,
-                marginLeft: 16,
-              }}>
-              Your Virtual Runway
-            </Text>
-            <Text
-              style={{
-                fontSize: 12,
-                color: 'black',
-                // marginTop: 6,
-                marginLeft: 16,
-                fontWeight: '500',
-                marginBottom: 20,
-                // margin: 20,
-              }}>
-              {`Explore your style transformations – where your wardrobe dreams come to life.`}
-            </Text>
-
-            <FlatList
-              data={datas}
-              numColumns={2}
-              contentContainerStyle={{
-                width: '100%',
-                alignItems: 'center',
-              }}
-              renderItem={({_, index}) => <StyleCard index={index} />}
-            />
-          </View>
+          <VirtualGeneratedList data={datas} />
         </Modalize>
       </ScrollView>
     </SafeAreaView>

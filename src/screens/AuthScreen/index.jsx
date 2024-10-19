@@ -1,92 +1,273 @@
-import React from 'react';
+import {BlurView} from '@react-native-community/blur';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  ImageBackground,
+  Image,
+  Dimensions,
   TouchableOpacity,
-  SafeAreaView,
+  FlatList,
 } from 'react-native';
-import {colors} from '../../theme/colors';
-import Icon from 'react-native-vector-icons/AntDesign';
+import {TextInput} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-const AuthScreen = ({navigation}) => {
+type AuthScreenProps = {};
+
+const AuthScreen: React.FC<AuthScreenProps> = ({navigation, route}) => {
+  const [data, setData] = useState();
+
+  const stylePreferences = [
+    'Casual Chic 👚 \n*Relaxed yet stylish everyday wear*',
+    'Bohemian 🌻 \n*Free-spirited and artistic*',
+    'Minimalist ⚪ \n*Clean lines and simple elegance*',
+    'Vintage 🕰️ \n*Inspired by past decades*',
+    'Glamorous ✨ \n*Luxurious and eye-catching*',
+    'Sporty 🏃‍♀️ \n*Athletic and comfortable*',
+    'Preppy 🏫 \n*Classic and polished*',
+    'Edgy 🖤 \n*Bold and unconventional*',
+    'Business Professional 💼 \n*Sleek and office-appropriate*',
+  ];
+
+  const {height, width} = Dimensions.get('window');
+
+  const generatedImage =
+    'https://cdn.midjourney.com/1aad8ebe-7e70-4893-8868-c7a9850263e9/0_0.jpeg';
+
+  const renderImageUpload = () => (
+    <View>
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'white',
+          alignItems: 'center',
+          fontWeight: '700',
+          textAlign: 'center',
+        }}>
+        {`Upload your best snapshot so our\n AI can genrate try-on to`}
+      </Text>
+      <Image
+        source={{
+          uri: 'https://cdn.midjourney.com/1aad8ebe-7e70-4893-8868-c7a9850263e9/0_0.jpeg',
+        }}
+        style={{
+          width: width * 0.8,
+          height: height / 2,
+          resizeMode: 'cover',
+          borderWidth: 3,
+          borderColor: 'white',
+          marginVertical: 20,
+        }}
+      />
+      <Text
+        style={{
+          fontSize: 12,
+          color: 'black',
+          alignItems: 'center',
+          fontWeight: 'light',
+          textAlign: 'center',
+        }}>
+        {`We are the best and fastest try-it-on out there`}
+      </Text>
+      <TouchableOpacity
+        style={{
+          width: width * 0.8,
+          padding: 12,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginTop: 12,
+          borderRadius: 12,
+          shadowColor: '#000',
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+        }}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: 'black'}}>
+          Upload a Snap 📸
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderStylePicker = () => (
+    <View style={{flex: 1, alignItems: 'center'}}>
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'white',
+          alignItems: 'center',
+          fontWeight: '700',
+          textAlign: 'center',
+          marginTop: 12,
+        }}>
+        {`Style Signature`}
+      </Text>
+      <Text
+        style={{
+          fontSize: 14,
+          color: '#E1E1E1',
+          alignItems: 'center',
+          fontWeight: 'light',
+          textAlign: 'center',
+          marginBottom: 20,
+          width: width * 0.7,
+        }}>
+        {`Pick your favorite styles to personalize your virtual try-on experience.`}
+      </Text>
+      <FlatList
+        data={stylePreferences}
+        renderItem={({item}) => (
+          <View
+            style={{
+              width: width * 0.7,
+              padding: 8,
+              borderRadius: 8,
+              marginBottom: 10,
+              overflow: 'hidden',
+              // backgroundColor: 'white',
+            }}>
+            <BlurView
+              blurAmount={50}
+              blurType="regular"
+              style={StyleSheet.absoluteFillObject}
+            />
+            <Text
+              style={{
+                fontSize: 14,
+                color: 'black',
+                alignItems: 'center',
+                fontWeight: '500',
+                textAlign: 'center',
+              }}>
+              {item?.split('\n')[0]}
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: 'black',
+                alignItems: 'center',
+                fontWeight: '300',
+                fontStyle: 'italic',
+                textAlign: 'center',
+              }}>
+              {item?.split('\n')[1]}
+            </Text>
+          </View>
+        )}
+      />
+      <TouchableOpacity
+        style={{
+          width: width * 0.8,
+          padding: 12,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginBottom: 12,
+          borderRadius: 12,
+          shadowColor: '#000',
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+        }}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: 'black'}}>
+          Continue
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
-    <ImageBackground
-      source={require('../../../assets/background.jpg')}
-      style={styles.backgroundImage}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.topContent}>
-          <View style={styles.iconTileWrapper}>
-            <Text style={styles.bigBoldText}>Trial</Text>
-            <Text style={styles.bigLightText}> Room</Text>
-          </View>
-          <View style={styles.iconTileWrapper}>
-            <Text style={[styles.bigMidText, {fontSize: 14,marginLeft:10}]}>
-              Your Closet's New Best Friend
-            </Text>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('MainFlow')}
-            style={[styles.button, {backgroundColor: colors.white}]}>
-            <Text style={[styles.buttonText, {color: colors.black}]}>
-              Sign in with Instagram
-            </Text>
-            <Icon size={24} name="instagram" color={colors.black} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('MainFlow')}
-            style={[styles.button, {backgroundColor: colors.black}]}>
-            <Text style={[styles.buttonText, {color: colors.white}]}>
-              Sign in with Phone Number
-            </Text>
-            <Icon size={24} name="phone" color={colors.white} />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    </ImageBackground>
+    <SafeAreaView style={[styles.container, {height: height}]}>
+      <Image
+        src={generatedImage}
+        style={[StyleSheet.absoluteFillObject, {width: width, height: height}]}
+      />
+      <BlurView
+        blurAmount={50}
+        blurType="regular"
+        style={StyleSheet.absoluteFillObject}
+      />
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'white',
+          fontWeight: '700',
+          textAlign: 'center',
+          color: 'black',
+          marginTop: 12,
+        }}>
+        {`Hello there`}
+      </Text>
+      <Text
+        style={{
+          fontSize: 14,
+          color: '#E1E1E1',
+          alignItems: 'center',
+          fontWeight: 'light',
+          textAlign: 'center',
+          marginBottom: 20,
+          // width: width * 0.7,
+          color: 'black',
+        }}>
+        {`Create your account to personalize your virtual try-on experience.`}
+      </Text>
+      <TextInput
+        mode="outlined"
+        label="Email"
+        placeholder="Email"
+        theme={{
+          colors: {primary: 'white'},
+        }}
+        selectionColor={'white'}
+        outlineColor={'gray'}
+        style={{
+          backgroundColor: 'transparent',
+        }}
+        // underlineStyle={{backgroundColor: 'transparent'}}
+      />
+      <TextInput
+        mode="outlined"
+        label="Password"
+        placeholder="Password"
+        theme={{
+          colors: {primary: 'white'},
+        }}
+        secureTextEntry
+        selectionColor={'white'}
+        outlineColor={'gray'}
+        style={{
+          backgroundColor: 'transparent',
+        }}
+        // underlineStyle={{backgroundColor: 'transparent'}}
+      />
+      <TouchableOpacity
+        style={{
+          width: width * 0.8,
+          padding: 12,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginBottom: 12,
+          borderRadius: 12,
+          shadowColor: '#000',
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+          marginTop: 24,
+        }}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', color: 'black'}}>
+          Signup 🔐
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
   container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    padding: 32,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay
+    backgroundColor: 'white',
+    // alignItems: 'center',
+    justifyContent: 'center',
+    padding: 18,
   },
-  topContent: {
-    marginTop: '20%',
-  },
-  bigLightText: {fontWeight: '200', color: colors.white, fontSize: 48},
-  bigBoldText: {fontWeight: 'bold', color: colors.white, fontSize: 48},
-  bigMidText: {fontWeight: '400', color: colors.white, fontSize: 48},
-  iconTileWrapper: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-  },
-  buttonContainer: {
-    width: '100%',
-    marginBottom: 20, // Add space at the bottom
-  },
-  button: {
-    width: '100%',
-    padding: 12,
-    borderRadius: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16, // Add space between buttons
-  },
-  buttonText: {fontWeight: '500', fontSize: 18},
 });
 
 export default AuthScreen;
