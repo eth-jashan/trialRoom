@@ -9,8 +9,7 @@ const Stack = createNativeStackNavigator();
 function WelcomeNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Welcome" component={ProfileScreen} />
-      <Stack.Screen name="Auth" component={AuthScreen} />
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
     </Stack.Navigator>
   );
 }

@@ -11,6 +11,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import AppMainNavigator from './src/navigator';
 import {Provider} from 'react-redux';
+import { firebase } from '@react-native-firebase/app';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,6 +19,9 @@ function App() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+ 
+firebase.initializeApp()
 
   return (
     <SafeAreaView style={{flex: 1}}>

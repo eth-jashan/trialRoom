@@ -108,7 +108,7 @@ export default function WelcomeScreen({navigation}) {
   const NextButton = () => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.replace('Auth')}
+        onPress={() => navigation.navigate('Auth')}
         style={{
           position: 'absolute',
           bottom: height * 0.08,

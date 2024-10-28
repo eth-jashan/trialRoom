@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919017315904",
+    "project_id": "try-it-on-90911",
+    "storage_bucket": "try-it-on-90911.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919017315904:android:4b741bda1a9c38eb8a09a5",
+        "android_client_info": {
+          "package_name": "com.trialroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXlfKKd1xezK6JNyHjml9E88V3Zr_LdQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
